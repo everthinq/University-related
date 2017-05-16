@@ -1,0 +1,131 @@
+1.
+SELECT	last_name
+,	salary
+FROM	employees
+WHERE	salary > 12000;
+
+SAVE	lab2_1.sql;
+
+
+
+2.
+SELECT	last_name
+,	department_id
+FROM	employees
+WHERE	employee_id = 176; 
+
+
+
+3.
+SELECT	last_name
+,	salary
+FROM	employees
+WHERE 	salary >= 5000 AND 
+	salary <= 12000;
+
+SAVE lab2_3.sql
+
+
+
+4.
+SELECT	last_name
+,	job_id
+,	hire_date
+FROM	employees
+WHERE	hire_date BETWEEN '01.01.01' AND '01.01.05'
+ORDER BY hire_date;
+
+
+5.
+SELECT	last_name
+,	department_id
+FROM	employees
+WHERE 	department_id BETWEEN 20 AND 50
+ORDER BY last_name;
+
+
+6.
+SELECT	last_name 	AS employee
+,	salary 		AS monthly_salary
+,	department_id
+FROM	employees
+WHERE 	department_id BETWEEN 20 AND 50
+AND 	salary BETWEEN 5000 AND 12000
+ORDER BY salary;
+
+SAVE lab2_6.sql;
+
+
+
+7.
+SELECT	last_name
+,	hire_date
+FROM	employees
+WHERE	hire_date BETWEEN '01.01.02' AND '31.12.02';
+
+
+8.
+SELECT	last_name
+,	job_id
+FROM	employees
+WHERE	manager_id IS null;
+
+
+
+9.
+SELECT	last_name
+,	salary
+,	commission_pct
+FROM 	employees
+WHERE	commission_pct IS NOT null
+ORDER BY salary DESC, commission_pct DESC;
+
+
+10.
+SELECT DISTINCT
+	last_name
+FROM	employees
+WHERE	last_name LIKE '__a%';
+
+
+11.
+SELECT DISTINCT
+	last_name
+FROM	employees
+WHERE	last_name LIKE 'ae%'	OR
+	last_name LIKE '%ae%'	OR
+	last_name LIKE 'a%e%'	OR
+	last_name LIKE '%a%e%'	OR
+	last_name LIKE '%ae'	OR
+	last_name LIKE 'ea%'	OR
+	last_name LIKE '%ea%'	OR
+	last_name LIKE 'e%a%'	OR
+	last_name LIKE '%e%a%'	OR
+	last_name LIKE '%ea';
+
+
+12.
+SELECT  last_name
+,	job_id
+,	salary
+FROM	employees
+WHERE	job_id = 'SA_REP'	OR 
+	job_id = 'ST_CLERK'	AND
+	salary != 2500		AND
+	salary != 3500		AND
+	salary != 7500
+ORDER BY last_name;
+
+
+13.
+SELECT	last_name 	AS employee
+,	salary 		AS monthly_salary
+,	commission_pct
+,	salary * commission_pct	
+			AS commision_sum
+,	salary + salary * 0.2
+			AS "SALARY + 20%"
+FROM	employees
+WHERE	commission_pct IS NOT NULL;
+
+SAVE	lab2_13.sql;

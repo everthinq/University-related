@@ -1,0 +1,66 @@
+2. Да
+
+
+3. Да
+SELECT	last_name, job_id, salary as sal
+FROM	employees;
+
+
+
+4. Такой таблицы не существует.
+
+
+5. Да
+SELECT	employee_id
+, 	last_name
+, 	salary * 12 as ANNUAL_SALARY
+FROM	employees;
+
+
+6.
+DESC	departments;
+SELECT	*
+FROM	departments;
+
+
+7.
+DESC	employees;
+SELECT	employee_id
+,	last_name
+,	job_id		
+,	hire_date
+FROM	employees;
+SAVE lab1_7.sql;
+
+
+8.
+START	lab1_7.sql;
+	@lab1_7.sql;
+
+
+9.
+SELECT DiSTINCT	job_id
+FROM	employees;
+
+
+10.
+SELECT	employee_id	AS emp#
+,	last_name	AS emp_name
+,	job_id		AS job_id
+,	hire_date	AS hire_date
+FROM	employees;
+
+
+11. || - конкатенация
+SELECT	first_name || ', ' || job_id AS employee_and_title
+FROM	employees;
+
+12.
+SELECT  employee_id	|| ', ' ||
+	first_name	|| ', ' ||
+	last_name	|| ', ' ||
+	job_id		|| ', ' ||
+	salary		|| ', ' ||
+	salary * 12 AS the_output 
+FROM employees;
+

@@ -1,0 +1,106 @@
+1.
+SELECT	emp.last_name
+,	department_id
+,	dep.department_name
+FROM	employees emp JOIN departments dep
+USING	(department_id);
+
+
+2.
+SELECT	DISTINCT job_id 
+, 	location_id 
+FROM 	employees JOIN departments 
+USING	(department_id) 
+WHERE 	department_id = 80;
+
+
+3.
+SELECT	DISTINCT emp.last_name
+,	dep.department_name
+,	loc.location_id
+,	loc.city
+FROM	employees emp
+JOIN	departments dep
+oN	emp.department_id = dep.department_id
+JOIN	locations loc
+ON	dep.location_id = loc.location_id
+WHERE	emp.commission_pct IS NOT NULL;
+
+
+4.
+SELECT	DISTINCT emp.last_name
+,	dep.department_name
+FROM	employees emp 
+JOIN 	departments dep
+ON	emp.department_id = dep.department_id
+WHERE	emp.last_name LIKE '%a%';
+
+
+5.
+SELECT	emp.last_name
+,	emp.job_id
+,	dep.department_id
+,	dep.department_name
+,	loc.city
+FROM	employees emp
+JOIN	departments dep
+ON	emp.department_id = dep.department_id
+JOIN	locations loc
+ON	dep.location_id = loc.location_id
+WHERE	loc.city LIKE 'Toronto';
+
+
+6.
+SELECT	emp1.last_name 	  AS employee 
+, 	emp1.employee_id  AS emp# 
+, 	emp2.last_name    AS manager 
+, 	emp2.employee_id  AS mgr# 
+FROM	employees emp1 
+LEFT JOIN employees emp2 
+ON 	(emp1.manager_id = emp2.employee_id);
+
+
+7.
+SELECT	emp1.last_name 	  AS employee 
+, 	emp1.employee_id  AS emp# 
+, 	emp2.last_name    AS manager 
+, 	emp2.employee_id  AS mgr# 
+FROM	employees emp1 
+LEFT JOIN employees emp2 
+ON 	(emp1.manager_id = emp2.employee_id) 
+ORDER BY emp1.employee_id;
+
+
+8.
+SELECT	emp1.department_id
+, 	emp1.last_name
+, 	emp2.last_name
+FROM	employees emp1 
+JOIN 	employees emp2 
+ON 	(emp1.department_id = emp2.department_id) 
+WHERE	emp1.employee_id != emp2.employee_id
+ORDER BY emp1.department_id;
+
+
+9. Нет таблицы JOB_GRADES.
+
+
+10.
+SELECT	emp1.last_name 
+, 	emp1.hire_date 
+FROM 	employees emp1 
+JOIN 	employees emp2 
+ON 	(emp1.hire_date > emp2.hire_date) 
+WHERE 	emp2.last_name = 'Davies' 
+ORDER BY hire_date;
+
+
+11.
+SELECT	emp1.last_name AS employee 
+, 	emp1.hire_date AS emphired 
+, 	emp2.last_name AS manager 
+, 	emp2.hire_date AS mgrHired 
+FROM 	employees emp1
+JOIN 	employees emp2 
+ON 	(emp1.manager_id = emp2.employee_id)
+WHERE	emp1.hire_date < emp2.hire_date;

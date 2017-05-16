@@ -1,0 +1,163 @@
+выбрать номер_сотрудника, фамилию, полное название профессии, 
+название отдела, оклад, город в котором расположен отдел, и название региона
+0.
+SELECT	emp.employee_id
+,	emp.last_name
+,	jobs.job_title
+,	dep. department_name
+,	emp.salary
+,	loc.city
+,	reg.region_name
+FROM	employees emp
+LEFT JOIN 	departments dep
+ON	emp.department_id = dep.department_id
+LEFT JOIN	jobs
+ON	emp.job_id = jobs.job_id
+LEFT JOIN	locations loc
+ON	dep.location_id = loc.location_id
+LEFT JOIN	countries
+ON	loc.country_id = countries.country_id
+LEFT JOIN	regions reg
+ON	countries.region_id = reg.region_id;
+
+
+выбрать всех менеджеров, которые зарабатывают больше своего наставника
+00.
+SELECT	emp1.last_name 	AS emp 
+, 	emp1.salary	AS emp_salary
+, 	emp2.last_name 	AS mgr 
+, 	emp2.salary 	AS mgr_salary 
+FROM 	employees emp1
+JOIN 	employees emp2 
+ON 	(emp1.manager_id = emp2.employee_id)
+WHERE	emp2.salary > emp1.salary;
+
+
+выбрать всех сотрудников, зарабатывающих больше чем злоткей, используя соединение таблиц
+000.
+SELECT	emp1.last_name 
+, 	emp1.salary
+FROM 	employees emp1
+JOIN 	employees emp2 
+ON 	(emp1.salary > emp2.salary)
+WHERE	emp2.last_name = 'Zlotkey';
+
+
+выбрать всех сотрудников, которые были наняты раньше и позже своих менеджеров
+0000.
+SELECT	emp1.last_name AS emp
+, 	emp1.hire_date AS emphired 
+, 	emp2.last_name AS mgr
+, 	emp2.hire_date AS mgrHired 
+FROM 	employees emp1
+JOIN 	employees emp2 
+ON 	(emp1.manager_id = emp2.employee_id)
+WHERE	emp1.hire_date < emp2.hire_date;
+
+
+1.
+SELECT	emp.last_name
+,	department_id
+,	dep.department_name
+FROM	employees emp JOIN departments dep
+USING	(department_id);
+
+
+2.
+SELECT	DISTINCT job_id 
+, 	location_id 
+FROM 	employees JOIN departments 
+USING	(department_id) 
+WHERE 	department_id = 80;
+
+
+3.
+SELECT	DISTINCT emp.last_name
+,	dep.department_name
+,	loc.location_id
+,	loc.city
+FROM	employees emp
+JOIN	departments dep
+oN	emp.department_id = dep.department_id
+JOIN	locations loc
+ON	dep.location_id = loc.location_id
+WHERE	emp.commission_pct IS NOT NULL;
+
+
+4.
+SELECT	DISTINCT emp.last_name
+,	dep.department_name
+FROM	employees emp 
+JOIN 	departments dep
+ON	emp.department_id = dep.department_id
+WHERE	emp.last_name LIKE '%a%';
+
+
+5.
+SELECT	emp.last_name
+,	emp.job_id
+,	dep.department_id
+,	dep.department_name
+,	loc.city
+FROM	employees emp
+JOIN	departments dep
+ON	emp.department_id = dep.department_id
+JOIN	locations loc
+ON	dep.location_id = loc.location_id
+WHERE	loc.city LIKE 'Toronto';
+
+
+6.
+SELECT	emp1.last_name 	  AS employee 
+, 	emp1.employee_id  AS emp# 
+, 	emp2.last_name    AS manager 
+, 	emp2.employee_id  AS mgr# 
+FROM	employees emp1 
+LEFT JOIN employees emp2 
+ON 	(emp1.manager_id = emp2.employee_id);
+
+
+7.
+SELECT	emp1.last_name 	  AS employee 
+, 	emp1.employee_id  AS emp# 
+, 	emp2.last_name    AS manager 
+, 	emp2.employee_id  AS mgr# 
+FROM	employees emp1 
+LEFT JOIN employees emp2 
+ON 	(emp1.manager_id = emp2.employee_id) 
+ORDER BY emp1.employee_id;
+
+
+8.
+SELECT	emp1.department_id
+, 	emp1.last_name
+, 	emp2.last_name
+FROM	employees emp1 
+JOIN 	employees emp2 
+ON 	(emp1.department_id = emp2.department_id) 
+WHERE	emp1.employee_id != emp2.employee_id
+ORDER BY emp1.department_id;
+
+
+9. Нет таблицы JOB_GRADES.
+
+
+10.
+SELECT	emp1.last_name 
+, 	emp1.hire_date 
+FROM 	employees emp1 
+JOIN 	employees emp2 
+ON 	(emp1.hire_date > emp2.hire_date) 
+WHERE 	emp2.last_name = 'Davies' 
+ORDER BY hire_date;
+
+
+11.
+SELECT	emp1.last_name AS employee 
+, 	emp1.hire_date AS emphired 
+, 	emp2.last_name AS manager 
+, 	emp2.hire_date AS mgrHired 
+FROM 	employees emp1
+JOIN 	employees emp2 
+ON 	(emp1.manager_id = emp2.employee_id)
+WHERE	emp1.hire_date < emp2.hire_date;

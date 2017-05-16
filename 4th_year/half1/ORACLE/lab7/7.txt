@@ -1,0 +1,54 @@
+1.
+SELECT	department_id
+FROM	departments
+MINUS
+SELECT	department_id
+FROM	employees
+WHERE job_id LIKE 'ST_CLERK';
+
+
+2.
+SELECT	country_id "CO"
+,	country_name
+FROM countries
+MINUS
+SELECT loc.country_id, countries.country_name
+FROM locations loc JOIN countries
+ON loc.country_id = countries.country_id
+JOIN departments dep
+ON dep.location_id = loc.location_id;
+
+
+3.
+SELECT	job_id
+, 	department_id
+FROM (SELECT job_id, department_id
+	FROM employees
+	WHERE department_id IN (10, 20, 50)
+	INTERSECT
+	SELECT job_id, department_id
+	FROM employees)
+ORDER BY decode (department_id, 10,1, 20,3, 50,2);
+
+
+4.
+SELECT	employee_id
+, 	job_id
+FROM employees
+INTERSECT 
+SELECT 	employee_id
+, 	job_id
+FROM job_history;
+
+
+5.
+SELECT 	employee_id
+, 	department_id
+, 	TO_CHAR (NULL) department_name
+FROM employees
+UNION
+	SELECT 	TO_NUMBER (NULL)
+	, 	department_id
+	, 	department_name
+FROM departments;
+
