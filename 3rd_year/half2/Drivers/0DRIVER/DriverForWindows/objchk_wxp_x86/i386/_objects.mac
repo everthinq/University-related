@@ -1,0 +1,19 @@
+
+
+386_OBJECTS=\
+ $(OBJ_PATH)\$O\pnp.obj \
+ $(OBJ_PATH)\$O\pm.obj \
+ $(OBJ_PATH)\$O\wdmdefault.obj \
+ $(OBJ_PATH)\$O\emulatedevice.obj \
+
+
+
+
+
+# lowercased
+BASEDIR=c:\winddk\7600.16385.1
+OBJECT_ROOT=c:\winddk\7600.16385.1
+MAKEDIR_LOWERCASE=c:\320\0driver\driverforwindows
+OBJ_PATH=c:\320\0driver\driverforwindows
+CONCURRENT_MIDL=0
+CONCURRENT_MANIFEST_BUILD=0

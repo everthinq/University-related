@@ -1,0 +1,3 @@
+TARGETNAME=EmulateDevice
+TARGETTYPE=DRIVER
+SOURCES=pnp.c PM.c WDMDefault.c EmulateDevice.c

@@ -1,0 +1,35 @@
+
+#include <windows.h>
+#include <stdio.h>
+#include <conio.h>
+#pragma hdrstop
+
+//---------------------------------------------------------------------------
+
+#pragma argsused
+int main(int argc, char* argv[])
+{
+    wchar_t a='a';
+    wchar_t b;
+
+    DWORD buff=0;
+    HANDLE hOut;
+    hOut = CreateFile("\\\\.\\EmuDevice", GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+    if (hOut == INVALID_HANDLE_VALUE) {
+        printf("ERROR %x \n",GetLastError());
+        return 2;
+    }
+
+    WriteFile(hOut, &a,
+     sizeof(a),
+     &buff,
+     NULL);
+     ReadFile(hOut, &buff,
+     sizeof(a),
+     &buff,
+     NULL);
+    CloseHandle(hOut);
+    getch();
+    return 0;
+}
+//---------------------------------------------------------------------------

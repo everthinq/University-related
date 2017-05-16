@@ -1,0 +1,8 @@
+std::list < std::list<int> > l;
+
+auto it = l.begin();
+auto it_inside = (*it).begin();
+it_inside++;
+
+l.push_back(list);
+(*(l.begin())).push_back(15);
