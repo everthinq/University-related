@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>r4/asd.txt</file>
+    </qresource>
+</RCC>
